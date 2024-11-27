@@ -1,3 +1,4 @@
+<!-- RacePage.vue -->
 <template>
     <div class="race-page">
       <h1 class="title">Select Your Race</h1>

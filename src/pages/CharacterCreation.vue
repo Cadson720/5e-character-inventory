@@ -1,3 +1,4 @@
+<!-- CharacterCreation.vue -->
 <template>
     <div class="character-creation">
       <h1 class="heading">Character Creation</h1>

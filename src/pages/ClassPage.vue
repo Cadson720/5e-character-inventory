@@ -1,3 +1,4 @@
+<!-- ClassPage.vue -->
 <template>
     <div class="class-page">
       <h1 class="title">Select Your Class</h1>

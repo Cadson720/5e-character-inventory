@@ -1,3 +1,4 @@
+<!-- BackgroundPage.vue -->
 <template>
     <div class="background-page">
       <h1 class="title">Select Your Background</h1>
