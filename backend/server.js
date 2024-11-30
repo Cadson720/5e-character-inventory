@@ -11,9 +11,9 @@ const PORT = 5000;
 
 // Middleware to enable CORS
 app.use(cors({
-    origin: 'http://192.168.50.201:8080', // Replace with your frontend's origin
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // Allow cookies if necessary
+    origin: 'http://localhost:8080', // Allow requests from your frontend
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true, // Allow cookies if needed
 }));
 
 // Middleware to parse incoming requests
@@ -27,5 +27,5 @@ app.use('/api/inventory', inventoryRoutes);
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Backend server running on http://localhost:${PORT}`);
+    console.log(`Backend server running on http://localhost:${PORT}`);
 });
