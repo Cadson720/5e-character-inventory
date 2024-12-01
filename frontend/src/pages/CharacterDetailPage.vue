@@ -210,7 +210,9 @@ export default {
   justify-content: space-between;
   margin-bottom: 20px;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
+  background-color: gray;
+  padding: 20px;
 }
 
 .toggle-button {
@@ -235,39 +237,40 @@ h1 {
 
 .inventory-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(5, 1fr); /* Always 5 columns */
+  gap: 15px;
   width: 100%;
   justify-content: center;
   align-items: start;
 }
 
 .inventory-card {
-  background: #f9f9f9;
-  border: 1px solid black;
+  background: #dbdbdb;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
-  width: 100%;
-  max-width: 400px;
+  width: 100%; /* Adjust to grid column */
+  border-radius: 20px;
 }
 
 .inventory-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02); /* Scales the card slightly */
+  outline: 1px solid black; /* Adds a white outline */
+  transition: transform 0.15s ease, outline 0.15s ease; /* Smooth transition for scaling and outline */
+  border-radius: 20px;
 }
 
 .inventory-image-container {
   position: relative;
-  border: 1px solid black;
   overflow: hidden;
+  border-radius: 20px 20px 0 0;
 }
 
 .inventory-card-image {
   width: 100%;
   height: auto;
   display: block;
-  border: 1px solid black;
+  object-fit: cover; /* Ensure images scale properly within their containers */
+  border-radius: 20px 20px 0 0;
 }
 
 .inventory-info-icons {
@@ -280,17 +283,14 @@ h1 {
 }
 
 .info-icon {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   border: 2px solid black;
-  background-color: #fff;
 }
 
 .inventory-card-content {
   padding: 10px;
-  margin-top: -2px;
-  border: 1px solid black;
   text-align: center;
   display: flex;
   align-items: center;
@@ -304,6 +304,7 @@ h1 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: bold;
 }
 
 .add-item-button {
@@ -323,7 +324,12 @@ h1 {
 
 @media (max-width: 480px) {
   .inventory-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(5, 1fr); /* Still maintain 5 columns, images will scale */
+    gap: 5px;
+  }
+
+  .inventory-card {
+    border-radius: 5px;
   }
 
   .inventory-card-content h4 {
