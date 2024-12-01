@@ -38,13 +38,15 @@
       <div
         v-for="item in filteredAndSortedInventory"
         :key="item.inventory_id"
-        class="inventory-card"
+        :class="['inventory-card', { 'no-content': !showInventoryContent }]"
       >
-        <div class="inventory-image-container">
+        <div
+          :class="['inventory-image-container', { 'no-content': !showInventoryContent }]"
+        >
           <img
             :src="item.imagePath"
             alt="Item Image"
-            class="inventory-card-image"
+            :class="['inventory-card-image', { 'no-content': !showInventoryContent }]"
             @error="handleImageError"
           />
           <div class="inventory-info-icons">
@@ -85,7 +87,6 @@
     </router-link>
   </div>
 </template>
-
 
 <script>
 import { ref, computed, onMounted } from 'vue';
@@ -237,7 +238,7 @@ h1 {
 
 .inventory-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Always 5 columns */
+  grid-template-columns: repeat(5, 1fr);
   gap: 15px;
   width: 100%;
   justify-content: center;
@@ -248,29 +249,40 @@ h1 {
   background: #dbdbdb;
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
-  width: 100%; /* Adjust to grid column */
-  border-radius: 20px;
+  width: 100%;
+  border-radius: 20px; /* Default rounded corners */
+}
+
+.inventory-card.no-content {
+  border-radius: 20px; /* Fully rounded corners when content is hidden */
 }
 
 .inventory-card:hover {
-  transform: scale(1.02); /* Scales the card slightly */
-  outline: 1px solid black; /* Adds a white outline */
-  transition: transform 0.15s ease, outline 0.15s ease; /* Smooth transition for scaling and outline */
-  border-radius: 20px;
+  transform: scale(1.02);
+  outline: 1px solid black;
+  transition: transform 0.15s ease, outline 0.15s ease;
 }
 
 .inventory-image-container {
   position: relative;
   overflow: hidden;
-  border-radius: 20px 20px 0 0;
+  border-radius: 20px 20px 0 0; /* Default rounded top corners */
+}
+
+.inventory-image-container.no-content {
+  border-radius: 20px; /* Fully rounded corners for the image when content is hidden */
 }
 
 .inventory-card-image {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover; /* Ensure images scale properly within their containers */
-  border-radius: 20px 20px 0 0;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0; /* Default rounded top corners */
+}
+
+.inventory-card-image.no-content {
+  border-radius: 20px; /* Fully rounded corners for the image */
 }
 
 .inventory-info-icons {
@@ -324,7 +336,7 @@ h1 {
 
 @media (max-width: 480px) {
   .inventory-grid {
-    grid-template-columns: repeat(5, 1fr); /* Still maintain 5 columns, images will scale */
+    grid-template-columns: repeat(5, 1fr);
     gap: 5px;
   }
 

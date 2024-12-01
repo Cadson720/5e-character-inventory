@@ -30,4 +30,26 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.post("/:characterId/bulk-add", async (req, res) => {
+    const { items } = req.body; // Array of items with character_id, item_id, quantity, and location_id
+  
+    try {
+      const insertQueries = items.map(
+        (item) =>
+          pool.query(
+            `INSERT INTO inventory (character_id, item_id, quantity, location_id)
+             VALUES ($1, $2, $3, $4)`,
+            [item.character_id, item.item_id, item.quantity, item.location_id]
+          )
+      );
+  
+      await Promise.all(insertQueries);
+      res.json({ success: true });
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  });
+  
+
 module.exports = router;
