@@ -52,14 +52,14 @@
           <div class="inventory-info-icons">
             <!-- Category Icon -->
             <img
-              :src="require(`../assets/${item.item_category.toLowerCase()}.png`)"
+              :src="require(`../assets/categories/${item.item_category.toLowerCase()}.png`)"
               alt="Category Icon"
               class="info-icon"
               @error="handleImageError"
             />
             <!-- Location Icon -->
             <img
-              :src="require(`../assets/${item.location_name.toLowerCase()}.png`)"
+              :src="require(`../assets/locations/${item.location_name.toLowerCase()}.png`)"
               alt="Location Icon"
               class="info-icon"
               @error="handleImageError"
@@ -130,7 +130,7 @@ export default {
 
     const getImagePath = (itemName) => {
       try {
-        return require(`../assets/${itemName.replace(/\s+/g, '_')}.png`);
+        return require(`../assets/items/${itemName.replace(/\s+/g, '_')}.png`);
       } catch {
         return require('../assets/Torch.png'); // Fallback image
       }
